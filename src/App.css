@@ -1,6 +1,15 @@
+h1 {
+  font-weight: bold;
+}
+
 .result img {
   border-radius: 50%;
   margin-right: 10px;
+}
+
+.result a {
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .col-centered {
