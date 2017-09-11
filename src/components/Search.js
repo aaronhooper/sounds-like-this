@@ -66,7 +66,10 @@ class Search extends Component {
       <div>
         <form className="form" onSubmit={this.getData}>
           <div className="input-group">
-            <input className="form-control" id="search" type="search" value={this.state.searchTerm} onChange={this.updateSearchTerm}></input>
+            <input className="form-control" id="search" type="search"
+                   value={this.state.searchTerm}
+                   onChange={this.updateSearchTerm}>
+            </input>
             <span className="input-group-btn">
               <button className="btn btn-primary" id="submit" type="submit">Go!</button>
             </span>
