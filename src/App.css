@@ -1,0 +1,9 @@
+.result img {
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.col-centered {
+  float: none;
+  margin: 0 auto;
+}
