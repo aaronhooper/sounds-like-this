@@ -1,5 +1,5 @@
 h1 {
-  font-weight: bold;
+  /*font-weight: bold;*/
 }
 
 .result img {
@@ -9,7 +9,7 @@ h1 {
 
 .result a {
   text-decoration: none;
-  font-weight: bold;
+  /*font-weight: bold;*/
 }
 
 .col-centered {
