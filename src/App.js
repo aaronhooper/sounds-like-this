@@ -14,11 +14,11 @@ class App extends Component {
       response: {}
     }
 
-    this.getData = this.getData.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
     this.updateSearchTerm = this.updateSearchTerm.bind(this)
   }
 
-  getData(e) {
+  handleSubmit(e) {
     e.preventDefault()
     const apiHref = 'http://ws.audioscrobbler.com/2.0/'
     let apiURLObject = url.parse(apiHref)
@@ -39,8 +39,12 @@ class App extends Component {
          .catch(err => { console.log(err) })
   }
 
+  changeTitle() {
+    document.title = `sounds like ${this.state.searchTerm || 'this'}`
+  }
+
   updateSearchTerm(e) {
-    this.setState({ searchTerm: e.target.value })
+    this.setState({ searchTerm: e.target.value }, () => { this.changeTitle() })
   }
 
   renderResults() {
@@ -74,7 +78,7 @@ class App extends Component {
         <div className="row">
           <div className="col-lg-6 col-centered">
             <h1>sounds like this</h1>
-            <Search onSubmit={this.getData} onChange={this.updateSearchTerm} />
+            <Search onSubmit={this.handleSubmit} onChange={this.updateSearchTerm} />
             {this.renderResults()}
           </div>
         </div>
