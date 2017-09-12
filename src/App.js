@@ -44,7 +44,7 @@ class App extends Component {
   }
 
   updateSearchTerm(e) {
-    this.setState({ searchTerm: e.target.value }, () => { this.changeTitle() })
+    this.setState({ searchTerm: e.target.value.trim() }, () => { this.changeTitle() })
   }
 
   renderResults() {
