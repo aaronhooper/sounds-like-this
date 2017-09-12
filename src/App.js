@@ -6,6 +6,7 @@ import url from 'url'
 import './App.css'
 
 class App extends Component {
+
   constructor(props) {
     super(props)
 
@@ -34,7 +35,6 @@ class App extends Component {
          .then(res => {
            console.log(url.format(apiURLObject))
            this.setState({ response: res })
-          //  console.dir(this.state.response)
          })
          .catch(err => { console.log(err) })
   }
@@ -44,19 +44,13 @@ class App extends Component {
   }
 
   renderResults() {
-    if (!this.state.response) {
-      console.log('Response doesn\'t exist!')
-      console.dir(this.state.response)
-      return
-    }
-
     try {
       if (this.state.response.data.error === 6) {
         console.log('None found!')
         return
       }
     } catch (e) {
-      console.log('Does not exist')
+      console.log('api error undefined')
       return
     }
 

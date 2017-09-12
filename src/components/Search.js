@@ -4,8 +4,6 @@ class Search extends Component {
 
   constructor(props) {
     super(props)
-
-    this.state = {}
   }
 
   render() {
@@ -14,7 +12,6 @@ class Search extends Component {
         <form className="form" onSubmit={this.props.onSubmit}>
           <div className="input-group">
             <input className="form-control" id="search" type="search"
-                   value={this.state.searchTerm}
                    onChange={this.props.onChange}>
             </input>
             <span className="input-group-btn">
