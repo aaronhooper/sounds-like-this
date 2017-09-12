@@ -6,11 +6,6 @@ class Result extends Component {
     super(props)
   }
 
-  insertPlaceholder() {
-    if (!this.props.img) return './noimage.png'
-    return this.props.img
-  }
-
   render() {
     return (
       <li className="result">
@@ -20,6 +15,11 @@ class Result extends Component {
         </a>
       </li>
     )
+  }
+
+  insertPlaceholder() {
+    if (!this.props.img) return './noimage.png'
+    return this.props.img
   }
 }
 

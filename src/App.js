@@ -9,13 +9,50 @@ class App extends Component {
 
   constructor(props) {
     super(props)
-
-    this.state = {
-      response: {}
-    }
-
+    this.state = { response: {} }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.updateSearchTerm = this.updateSearchTerm.bind(this)
+  }
+
+  render() {
+    return (
+      <div className="App container">
+        <div className="row">
+          <div className="col-sm-6 col-centered">
+            <h1>{`sounds like ${this.state.searchTerm || 'this'}`}</h1>
+            <Search onSubmit={this.handleSubmit} onChange={this.updateSearchTerm} />
+            <ul>
+              {this.renderResults()}
+            </ul>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  renderResults() {
+    try {
+      if (this.state.response.data.error === 6) {
+        console.log('None found!')
+        return
+      }
+    } catch (e) {
+      console.log('api error undefined')
+      return
+    }
+
+    let results = []
+    let artists = this.state.response.data.similarartists.artist
+
+    for (let i = 0; i < artists.length; i++) {
+      results.push(
+        <Result img={artists[i].image[1]['#text']}
+          href={artists[i].url}
+          name={artists[i].name}
+          />
+      )
+    }
+    return results
   }
 
   handleSubmit(e) {
@@ -44,48 +81,8 @@ class App extends Component {
   }
 
   updateSearchTerm(e) {
-    this.setState({ searchTerm: e.target.value.trim() }, () => { this.changeTitle() })
-  }
-
-  renderResults() {
-    try {
-      if (this.state.response.data.error === 6) {
-        console.log('None found!')
-        return
-      }
-    } catch (e) {
-      console.log('api error undefined')
-      return
-    }
-
-    let results = []
-    let artists = this.state.response.data.similarartists.artist
-
-    for (let i = 0; i < artists.length; i++) {
-      results.push(
-        <Result img={artists[i].image[1]['#text']}
-                href={artists[i].url}
-                name={artists[i].name}
-        />
-      )
-    }
-    return results
-  }
-
-  render() {
-    return (
-      <div className="App container">
-        <div className="row">
-          <div className="col-sm-6 col-centered">
-            <h1>{`sounds like ${this.state.searchTerm || 'this'}`}</h1>
-            <Search onSubmit={this.handleSubmit} onChange={this.updateSearchTerm} />
-            <ul>
-              {this.renderResults()}
-            </ul>
-          </div>
-        </div>
-      </div>
-    )
+    this.setState({ searchTerm: e.target.value.trim() },
+                    () => { this.changeTitle() })
   }
 }
 
