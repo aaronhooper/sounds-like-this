@@ -79,7 +79,9 @@ class App extends Component {
           <div className="col-lg-6 col-centered">
             <h1>sounds like this</h1>
             <Search onSubmit={this.handleSubmit} onChange={this.updateSearchTerm} />
-            {this.renderResults()}
+            <ul>
+              {this.renderResults()}
+            </ul>
           </div>
         </div>
       </div>

@@ -13,12 +13,12 @@ class Result extends Component {
 
   render() {
     return (
-      <h3 className="result">
+      <li className="result">
         <img src={this.insertPlaceholder()} alt="" />
         <a href={this.props.href}>
           {this.props.name}
         </a>
-      </h3>
+      </li>
     )
   }
 }
