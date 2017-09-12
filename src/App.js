@@ -77,7 +77,7 @@ class App extends Component {
       <div className="App container">
         <div className="row">
           <div className="col-lg-6 col-centered">
-            <h1>sounds like this</h1>
+            <h1>{`sounds like ${this.state.searchTerm || 'this'}`}</h1>
             <Search onSubmit={this.handleSubmit} onChange={this.updateSearchTerm} />
             <ul>
               {this.renderResults()}
