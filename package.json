@@ -2,7 +2,6 @@
   "name": "react-sounds",
   "version": "0.1.0",
   "description": "'Sounds Like This' rewritten in React.js",
-  "private": true,
   "dependencies": {
     "axios": "^0.16.2",
     "lodash": "^4.17.4",
