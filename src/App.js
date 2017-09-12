@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import Search from './components/Search'
 import Result from './components/Result'
+import './App.css'
+
 import axios from 'axios'
 import url from 'url'
-import './App.css'
 
 class App extends Component {
 
   constructor(props) {
     super(props)
-    this.state = { response: {} }
+    this.state = {}
     this.handleSubmit = this.handleSubmit.bind(this)
     this.updateSearchTerm = this.updateSearchTerm.bind(this)
   }
@@ -19,7 +20,7 @@ class App extends Component {
       <div className="App container">
         <div className="row">
           <div className="col-sm-6 col-centered">
-            <h1>{`sounds like ${this.state.searchTerm || 'this'}`}</h1>
+            <h1>{this.getTitle()}</h1>
             <Search onSubmit={this.handleSubmit} onChange={this.updateSearchTerm} />
             <ul>
               {this.renderResults()}
@@ -47,9 +48,9 @@ class App extends Component {
     for (let i = 0; i < artists.length; i++) {
       results.push(
         <Result img={artists[i].image[1]['#text']}
-          href={artists[i].url}
-          name={artists[i].name}
-          />
+                href={artists[i].url}
+                name={artists[i].name}
+        />
       )
     }
     return results
@@ -76,13 +77,13 @@ class App extends Component {
          .catch(err => { console.log(err) })
   }
 
-  changeTitle() {
-    document.title = `sounds like ${this.state.searchTerm || 'this'}`
-  }
-
   updateSearchTerm(e) {
     this.setState({ searchTerm: e.target.value.trim() },
-                    () => { this.changeTitle() })
+                    () => { document.title = this.getTitle() })
+  }
+
+  getTitle() {
+    return `sounds like ${this.state.searchTerm || 'this'}`
   }
 }
 

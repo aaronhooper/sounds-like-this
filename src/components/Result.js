@@ -10,9 +10,7 @@ class Result extends Component {
     return (
       <li className="result">
         <img src={this.insertPlaceholder()} alt="" />
-        <a href={this.props.href}>
-          {this.props.name}
-        </a>
+        <a href={this.props.href}>{this.props.name}</a>
       </li>
     )
   }

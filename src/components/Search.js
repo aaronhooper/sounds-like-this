@@ -16,7 +16,9 @@ class Search extends Component {
                    placeholder="Name of artist, musician, band...">
             </input>
             <span className="input-group-btn">
-              <button className="btn btn-primary" id="submit" type="submit">Go!</button>
+              <button className="btn btn-primary" id="submit" type="submit">
+                Go!
+              </button>
             </span>
           </div>
         </form>
