@@ -11,6 +11,17 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {}
+
+    // API init
+    const apiHref = 'http://ws.audioscrobbler.com/2.0/'
+    this.apiURLObject = url.parse(apiHref)
+    this.apiURLObject.query = {
+      method: 'artist.getsimilar',
+      api_key: '9a9863a1638f78d7be214bb63d0c0ea0',
+      format: 'json',
+      limit: '8'
+    }
+
     this.handleSubmit = this.handleSubmit.bind(this)
     this.updateSearchTerm = this.updateSearchTerm.bind(this)
   }
@@ -32,17 +43,6 @@ class App extends Component {
         </div>
       </div>
     )
-  }
-
-  componentDidMount() {
-    const apiHref = 'http://ws.audioscrobbler.com/2.0/'
-    this.apiURLObject = url.parse(apiHref)
-    this.apiURLObject.query = {
-      method: 'artist.getsimilar',
-      api_key: '9a9863a1638f78d7be214bb63d0c0ea0',
-      format: 'json',
-      limit: '8'
-    }
   }
 
   renderResults() {
