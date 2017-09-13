@@ -20,7 +20,7 @@ class App extends Component {
       <div className="App container">
         <div className="row">
           <div className="col-sm-6 col-centered">
-            <h1>{this.getTitle()}</h1>
+            <h1>{this.title}</h1>
             <Search onSubmit={this.handleSubmit} onChange={this.updateSearchTerm} />
             <ul>
               {this.renderResults()}
@@ -32,6 +32,8 @@ class App extends Component {
   }
 
   renderResults() {
+
+    // TODO: Change this piece of shit
     try {
       if (this.state.response.data.error === 6) {
         console.log('None found!')
@@ -58,9 +60,10 @@ class App extends Component {
 
   handleSubmit(e) {
     e.preventDefault()
+
+    // TODO: Move out of this function
     const apiHref = 'http://ws.audioscrobbler.com/2.0/'
     let apiURLObject = url.parse(apiHref)
-
     apiURLObject.query = {
       method: 'artist.getsimilar',
       api_key: '9a9863a1638f78d7be214bb63d0c0ea0',
@@ -79,10 +82,10 @@ class App extends Component {
 
   updateSearchTerm(e) {
     this.setState({ searchTerm: e.target.value.trim() },
-                    () => { document.title = this.getTitle() })
+                    () => { document.title = this.title })
   }
 
-  getTitle() {
+  get title() {
     return `sounds like ${this.state.searchTerm || 'this'}`
   }
 }
