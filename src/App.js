@@ -34,6 +34,17 @@ class App extends Component {
     )
   }
 
+  componentDidMount() {
+    const apiHref = 'http://ws.audioscrobbler.com/2.0/'
+    this.apiURLObject = url.parse(apiHref)
+    this.apiURLObject.query = {
+      method: 'artist.getsimilar',
+      api_key: '9a9863a1638f78d7be214bb63d0c0ea0',
+      format: 'json',
+      limit: '8'
+    }
+  }
+
   renderResults() {
 
     // TODO: Change this piece of shit
@@ -64,20 +75,10 @@ class App extends Component {
   handleSubmit(e) {
     e.preventDefault()
 
-    // TODO: Move out of this function
-    const apiHref = 'http://ws.audioscrobbler.com/2.0/'
-    let apiURLObject = url.parse(apiHref)
-    apiURLObject.query = {
-      method: 'artist.getsimilar',
-      api_key: '9a9863a1638f78d7be214bb63d0c0ea0',
-      format: 'json',
-      limit: '8',
-      artist: this.state.searchTerm
-    }
-
-    axios.get(url.format(apiURLObject))
+    this.apiURLObject.query.artist = this.state.searchTerm
+    axios.get(url.format(this.apiURLObject))
          .then(res => {
-           console.log(url.format(apiURLObject))
+           console.log(url.format(this.apiURLObject))
            this.setState({ response: res })
          })
          .catch(err => { console.log(err) })
