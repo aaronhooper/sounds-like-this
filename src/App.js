@@ -20,10 +20,13 @@ class App extends Component {
       <div className="App container">
         <div className="row">
           <div className="col-sm-6 col-centered">
+
             <h1>{this.title}</h1>
-            <Search onSubmit={this.handleSubmit} onChange={this.updateSearchTerm} />
+            <Search onSubmit={this.handleSubmit}
+                    onChange={this.updateSearchTerm} />
             <ul>
               {this.renderResults()}
+
             </ul>
           </div>
         </div>
