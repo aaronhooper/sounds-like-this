@@ -76,7 +76,9 @@ class App extends Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault()
+    // Don't preventdefault when e hasn't been passed
+    // i.e. when not used in render()
+    if (e) e.preventDefault()
 
     this.apiURLObject.query.artist = this.state.searchTerm
     axios.get(url.format(this.apiURLObject))
@@ -88,13 +90,15 @@ class App extends Component {
   }
 
   handleNameClick(e) {
-    console.log(e.target)
-    this.setState({ searchTerm: e.target.textContent })
+    this.setState({ searchTerm: e.target.textContent }, () => {
+      document.title = this.title
+      this.handleSubmit()
+    })
   }
 
   updateSearchTerm(e) {
-    this.setState({ searchTerm: e.target.value.trim() },
-                    () => { document.title = this.title })
+    this.setState({ searchTerm: e.target.value },
+                  () => { document.title = this.title })
   }
 
   get title() {
