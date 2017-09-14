@@ -13,7 +13,8 @@ class Search extends Component {
           <div className="input-group">
             <input className="form-control" id="search" type="search"
                    onChange={this.props.onChange}
-                   placeholder="Name of artist, musician, band...">
+                   placeholder="Name of artist, musician, band..."
+                   value={this.props.value}>
             </input>
             <span className="input-group-btn">
               <button className="btn btn-primary" id="submit" type="submit">

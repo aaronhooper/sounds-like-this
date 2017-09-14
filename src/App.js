@@ -24,6 +24,7 @@ class App extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this)
     this.updateSearchTerm = this.updateSearchTerm.bind(this)
+    this.handleNameClick = this.handleNameClick.bind(this)
   }
 
   render() {
@@ -34,7 +35,8 @@ class App extends Component {
 
             <h1>{this.title}</h1>
             <Search onSubmit={this.handleSubmit}
-                    onChange={this.updateSearchTerm} />
+                    onChange={this.updateSearchTerm}
+                    value={this.state.searchTerm} />
             <ul>
               {this.renderResults()}
 
@@ -66,6 +68,7 @@ class App extends Component {
         <Result img={artists[i].image[1]['#text']}
                 href={artists[i].url}
                 name={artists[i].name}
+                onClick={this.handleNameClick}
         />
       )
     }
@@ -82,6 +85,11 @@ class App extends Component {
            this.setState({ response: res })
          })
          .catch(err => { console.log(err) })
+  }
+
+  handleNameClick(e) {
+    console.log(e.target)
+    this.setState({ searchTerm: e.target.textContent })
   }
 
   updateSearchTerm(e) {
