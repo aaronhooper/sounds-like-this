@@ -48,18 +48,9 @@ class App extends Component {
   }
 
   renderResults() {
+    if (!this.state.hasOwnProperty('response')) return
 
-    // TODO: Change this piece of shit
-    try {
-      if (this.state.response.data.error === 6) {
-        console.log('None found!')
-        return
-      }
-    } catch (e) {
-      console.log('api error undefined')
-      return
-    }
-
+    //response exists, render the results
     let results = []
     let artists = this.state.response.data.similarartists.artist
 
