@@ -10,7 +10,7 @@ class App extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = { searchTerm: '' }
 
     // API init
     const apiHref = 'http://ws.audioscrobbler.com/2.0/'
