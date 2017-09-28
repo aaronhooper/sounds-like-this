@@ -69,6 +69,7 @@ class App extends Component {
                 href={artists[i].url}
                 name={artists[i].name}
                 onClick={this.handleNameClick}
+                key={i}
         />
       )
     }
